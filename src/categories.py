@@ -2,6 +2,7 @@ class Category:
     """
     Класс для категорий товара
     """
+
     name: str
     description: str
     products: list
