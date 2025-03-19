@@ -28,3 +28,8 @@ def second_category():
             Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
         ]
     )
+
+@pytest.fixture
+def product_data():
+    product_data = {'name': "Товар 2", 'description': "Описание товара 2", 'price': 200, 'quantity': 5}
+    return product_data
