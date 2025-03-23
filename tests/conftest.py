@@ -2,6 +2,8 @@ import pytest
 
 from src.categories import Category
 from src.products import Product
+from src.categories import Smartphone
+from src.categories import LawnGrass
 
 @pytest.fixture
 def product():
@@ -28,3 +30,34 @@ def second_category():
             Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
         ]
     )
+
+
+@pytest.fixture
+def prod_data():
+    prod_data = {
+        'name': "Товар9",
+        'description': "Описание товара",
+        'price': 400,
+        'quantity': 25
+    }
+    return prod_data
+
+
+@pytest.fixture
+def sample_product():
+    return Product("Товар1", "Описание товара", 100, 10)
+
+
+@pytest.fixture
+def sample_smartphone():
+    return Smartphone("Смартфон1", "Описание смартфона", 5000, 5, 90, "Модель1", 64, "черный")
+
+
+@pytest.fixture
+def sample_lawngras():
+    return LawnGrass("Травка1", "Описание травы", 100, 20, "Россия", 14, "зеленый")
+
+
+@pytest.fixture
+def sample_category(sample_product):
+    return Category("Категория1", "Описание категории", [sample_product])
