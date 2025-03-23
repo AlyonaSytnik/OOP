@@ -17,21 +17,28 @@ class Category:
         self.description = description
         self.__products = products
         Category.category_count += 1
+        Category.product_count += len(products)
+
+    def __str__(self):
+        prod_quantity = 0
+        for product in self.__products:
+            prod_quantity += product.quantity
+        return f'{self.name}, количество продуктов: {prod_quantity} шт.'
 
     def add_product(self, product: Product):
         if not isinstance(product, Product):
             raise TypeError("Добавляемый объект должен быть экземпляром класса Product или его наследников.")
 
         self.__products.append(product)
-        Category.product_count = len(self.__products)
+        Category.product_count += 1
 
     @property
     def products(self):
         return self.__products
 
     @property
-    def products_str(self):
-        products_str = ""
+    def products_info(self):
+        products_info = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return products_str
+            products_info += str(product) + "\n"
+        return products_info
