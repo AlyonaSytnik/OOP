@@ -61,3 +61,8 @@ def sample_lawngras():
 @pytest.fixture
 def sample_category(sample_product):
     return Category("Категория1", "Описание категории", [sample_product])
+
+@pytest.fixture(autouse=True)
+def reset_category_counts():
+    Category.category_count = 0
+    Category.product_count = 0

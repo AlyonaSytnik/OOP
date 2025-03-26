@@ -1,19 +1,23 @@
 import pytest
 from src.products import Product
 
-def test_product_initialization(product):
-    assert product.name == "Samsung Galaxy S23 Ultra"
-    assert product.description == "256GB, Серый цвет, 200MP камера"
-    assert product.price == 180000.0
-    assert product.quantity == 5
+def test_product_initialization():
+    product = Product("Товар1", "Описание товара", 100, 50)
+    assert product.name == "Товар1"
+    assert product.description == "Описание товара"
+    assert product.price == 100
+    assert product.quantity == 50
 
-def test_product_str(product):
-    expected_str = "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
-    assert str(product) == expected_str
+
+def test_product_str():
+    product = Product("Товар2", "Описание товара", 200, 10)
+    assert str(product) == "Товар2, 200 руб. Остаток: 10 шт."
+
 
 def test_product_len():
-    product = Product("Товар", "Описание товара", 300, 20)
+    product = Product("Товар3", "Описание товара", 300, 20)
     assert len(product) == 20
+
 
 def test_product_addition():
     product1 = Product("Товар4", "Описание товара", 100, 5)
@@ -40,8 +44,14 @@ def test_product_price_setter_invalid():
     assert product.price == 250  # Цена должна остаться 250, так как установка была некорректной
 
 
-def test_product_new_product(prod_data, product):
-    product = Product.new_product(prod_data)
+def test_product_new_product():
+    product_data = {
+        'name': "Товар9",
+        'description': "Описание товара",
+        'price': 400,
+        'quantity': 25
+    }
+    product = Product.new_product(product_data)
     assert product.name == "Товар9"
     assert product.description == "Описание товара"
     assert product.price == 400
